@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@koint">
+  <meta name="twitter:creator" content="@koint">
+
+  <!-- SEO stuff -->
+  <title>Openshift Quickstart in 5 minutes</title>
+  <meta property="og:title" content="Openshift Quickstart in 5 minutes" />
+  <meta name="twitter:title" content="Openshift Quickstart in 5 minutes">
+
+
+  
+	  <meta name="description" content="Openshift is a PaaS solution based on Docker and Kubernetes. This article will show you how to install Openshift Origin in less than 5 minutes and deploy your first
+Java application to it." />
+	  <meta property="og:description" content="Openshift is a PaaS solution based on Docker and Kubernetes. This article will show you how to install Openshift Origin in less than 5 minutes and deploy your first
+Java application to it." />
+	  <meta name="twitter:description" content="Openshift is a PaaS solution based on Docker and Kubernetes. This article will show you how to install Openshift Origin in less than 5 minutes and deploy your first
+Java application to it.">
+  
+  <link rel="canonical" href="http://0.0.0.0:4000/posts/openshift-quickstart-in-5-minutes/" />
+  <meta property="og:url" content="http://0.0.0.0:4000/posts/openshift-quickstart-in-5-minutes/" />
+  <meta name="twitter:url" content="http://0.0.0.0:4000/posts/openshift-quickstart-in-5-minutes/">
+
+  <meta property="og:site_name" content="Alain's Tech Blog" />
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images//posts/openshift-quickstart-in-5-minutes/top.jpg" />
+  <meta name="twitter:image" content="http://0.0.0.0:4000/assets/images//posts/openshift-quickstart-in-5-minutes/top.jpg">
+
+   <!-- if it's an article -->
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2017-04-11T06:00:00+07:00" />
+  <meta property="article:modified_time" content="2017-04-11T06:00:00+07:00" />
+
+  <meta content="http://www.linkedin.com/in/alainpham" property="article:author">
+
+  
+	  
+	  <meta content="development" property="article:section">
+	  
+  
+
+  
+	  
+	  <meta content="openshift" property="article:tag">
+	  
+	  <meta content="paas" property="article:tag">
+	  
+	  <meta content="spring-boot" property="article:tag">
+	  
+  
+
+    <script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Openshift Quickstart in 5 minutes",
+"datePublished": "2017-04-11T06:00:00+07:00",
+  
+"description": "
+Openshift is a PaaS solution based on Docker and Kubernetes. This article will show you how to install Openshift Origin in less than 5 minutes and deploy your first
+Java application to it.
+
+
+
+",
+  
+"url": "http://0.0.0.0:4000/posts/openshift-quickstart-in-5-minutes/"}</script>
+
+  
+
+  <link rel="author" href="http://www.linkedin.com/in/alainpham"/>
+
+   <!-- End SEO stuff -->
+
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+   <link href="/assets/css/syntax.css" rel="stylesheet">
+
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+	<div>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button"
+					data-toggle="collapse" data-target="#navbar-collapse-menu">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"> <i class="fa fa-barcode"></i>
+				</a>
+			</div>
+			<div id="navbar-collapse-menu" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+
+					
+						<!-- If has submenues -->
+						
+						<li class="dropdown">
+							<a class="dropdown-toggle"	data-toggle="dropdown" href="#">
+								Featured Projects
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								
+									<li>
+										<a href="/projects/microbam">
+											
+											MicroBam
+										</a>
+									</li>
+								
+									<li>
+										<a href="/projects/ourlegacy">
+											
+											OurLegacy
+										</a>
+									</li>
+								
+								</ul>
+							</li>
+						
+					
+						<!-- If has submenues -->
+						
+							<li><a href="/">Posts</a></li>
+						
+					
+						<!-- If has submenues -->
+						
+							<li><a href="/tags">Tags</a></li>
+						
+					
+						<!-- If has submenues -->
+						
+							<li><a href="/about">About</a></li>
+						
+					
+						<!-- If has submenues -->
+						
+						<li class="dropdown">
+							<a class="dropdown-toggle"	data-toggle="dropdown" href="#">
+								Follow me
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								
+									<li>
+										<a href="http://github.com/alainpham">
+											
+											<i class="fa fa-inverse fa-github fa-2x"></i>
+											
+											GitHub
+										</a>
+									</li>
+								
+									<li>
+										<a href="http://www.linkedin.com/in/alainpham">
+											
+											<i class="fa fa-inverse fa-linkedin-square fa-2x"></i>
+											
+											LinkedIn
+										</a>
+									</li>
+								
+									<li>
+										<a href="https://twitter.com/koint">
+											
+											<i class="fa fa-inverse fa-twitter fa-2x"></i>
+											
+											Twitter
+										</a>
+									</li>
+								
+								</ul>
+							</li>
+						
+					
+				</ul>
+			</div>
+		</div>
+	</nav>
+		
+		<img
+			alt="Openshift Quickstart in 5 minutes"
+			src="/assets/images//posts/openshift-quickstart-in-5-minutes/top.jpg" class="img-responsive">
+		
+
+	<div class="jumbotron  clearfix">
+
+		<h1 class="text-center">Openshift Quickstart in 5 minutes</h1>
+
+	</div>
+</div>
+
+	<div class="container">
+
+	
+	<p>
+		<strong>April 11, 2017</strong> ( last updated : April 11, 2017 )
+		<br>
+		
+			<a class="label label-default" href="/tags/#openshift">openshift</a>
+		
+			<a class="label label-default" href="/tags/#paas">paas</a>
+		
+			<a class="label label-default" href="/tags/#spring-boot">spring-boot</a>
+		
+    </p>
+	
+	<p>
+    	<a href="https://github.com/alainpham/rest-service" class="btn btn-default">
+		    <i class="fa fa-github fa-2x"></i>  https://github.com/alainpham/rest-service
+			</a>
+	</p>
+	
+	<hr>
+	<h1>Abstract</h1>
+	
+
+	<p>
+Openshift is a PaaS solution based on Docker and Kubernetes. This article will show you how to install Openshift Origin in less than 5 minutes and deploy your first
+Java application to it.
+</p>
+<!--more-->
+
+
+<h2>Versions used</h2>
+<ul>
+	<li>Centos 7</li>
+	<li>Openshift Origin Client v1.4.1</li>
+</ul>
+
+<h2>Install docker</h2>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>yum upgrade
+<span class="nb">sudo </span>yum <span class="nb">install </span>docker</code></pre></figure>
+
+<p>Edit  /etc/sysconfig/docker and add these options</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">OPTIONS</span><span class="o">=</span><span class="s1">'--selinux-enabled --insecure-registry 172.30.0.0/16'</span></code></pre></figure>
+
+
+
+<h2>Execute docker without sudo</h2>
+<p>Replace the ${USER} by your user name</p>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>groupadd docker
+<span class="nb">sudo </span>gpasswd <span class="nt">-a</span> <span class="k">${</span><span class="nv">USER</span><span class="k">}</span> docker</code></pre></figure>
+<p>Reboot your machine</p>
+
+<h2>Test docker</h2>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker.service
+<span class="nb">sudo </span>systemctl start docker.service
+docker run hello-world</code></pre></figure>
+<p>Expected result :</p>
+<pre>
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+....
+</pre>
+
+<h2>Download Openshift client and install</h2>
+<a href="https://www.openshift.org/download.html#oc-platforms">https://www.openshift.org/download.html#oc-platforms</a>
+<p>Place the oc executable in the $PATH</p>
+<pre>
+[demo@demo-centos-vm ~]$ oc version
+oc v1.4.1+3f9807a
+kubernetes v1.4.0+776c994
+</pre>
+
+<h2>Launch Openshift Cluster</h2>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">oc cluster up</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nt">--</span> Checking OpenShift client ... OK
+...
+   OpenShift server started.
+   The server is accessible via web console at:
+       https://YOUR_IP_ADDRESS:8443
+
+   You are logged <span class="k">in </span>as:
+       User:     developer
+       Password: developer
+
+   To login as administrator:
+       oc login <span class="nt">-u</span> system:admin</code></pre></figure>
+
+<p>Open browser and to to https://YOUR_IP_ADDRESS:8443/ and login with user/pwd : developer/developer</p>
+
+<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/logged.png"> <img
+	class="center-block img-responsive"
+	src="/assets/images//posts/openshift-quickstart-in-5-minutes/logged.png" alt="openshift login page"/></a>
+
+<h2>Deploy sample application</h2>
+<p>In a shell log in as admin and add the Java S2I (source to image) image streams to the openshift project.
+	This is important as we will use these images to build images from our own project source code</p>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">oc login <span class="nt">-u</span> system:admin
+oc create <span class="nt">-n</span> openshift <span class="nt">-f</span> https://raw.githubusercontent.com/fabric8io-images/s2i/master/image-streams.json</code></pre></figure>
+
+<p>Login as developer and add the application template of an app. You can customize these template as you wish.
+	This is just an example of a Spring Boot java application that exposes a rest web service.
+	</p>
+	<p>If you are interested in how to create a Spring Boot Application go to this article : <a href="/posts/quickstart-rest-microservice-with-spring-boot/">quickstart-rest-microservice-with-spring-boot</a></p>
+
+	<p>In short the template describes </p>
+<ul>
+	<li>The BuildConfig : what base image needs to be used to build the images container here it's "fuse-java" (imported from the image stream previously)</li>
+	<li>The DeploymentConfig : which ports are exposed by each pod (container)</li>
+	<li>The Services: what services (tcp mostly) are exposed by the app. This is to have location independency to access services exposed by multiple pods (containers)</li>
+	<li>The Routes: in order to access a service from outside of Openshift, routes need to be created.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">oc login <span class="nt">-u</span> developer
+oc create https://raw.githubusercontent.com/alainpham/rest-service/master/openshift/openshift_origin.yml</code></pre></figure>
+
+<p>Open browser and login as developer to your console https://YOUR_IP_ADDRESS:8443/</p>
+<p>Go to My Project and Click on add to project</p>
+<p>Add to project from template and select the previously added rest-service.</p>
+
+<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/addApp.png"> <img
+	class="center-block img-responsive"
+	src="/assets/images//posts/openshift-quickstart-in-5-minutes/addApp.png" alt="openshift add application"/></a>
+<p>The template allows you ton change configurations before creating the different objects on the openshift cluster (i.e. BuildConfig, DeploymentConfig, Services, Routes ..)</p>
+<p>
+The source is cloned from the git repository and built using the Source2Image method.
+	Note that this is a Java project and all dependencies for the maven build needs to be downloaded. If you have an existing nexus or other maven repo you can configure it in the Maven Mirror Url.
+This could accelerate build time.
+</p>
+<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/fillTemplate.png"> <img
+	class="center-block img-responsive"
+	src="/assets/images//posts/openshift-quickstart-in-5-minutes/fillTemplate.png" alt="openshift app template"/></a>
+
+<p>Click on create and wait for the build and deployments to occur.</p>
+
+<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/deployed.png"> <img
+	class="center-block img-responsive"
+	src="/assets/images//posts/openshift-quickstart-in-5-minutes/deployed.png" alt="openshift deployed apps"/></a>
+
+
+<p>Test by calling service.</p>
+<pre>curl http://YOUR_ROUTE_DOMAIN_NAME/svc/person/1</pre>
+<p>Expected result</p>
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="nl">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"John Doe"</span><span class="p">}</span></code></pre></figure>
+
+<p>You can now also access infos about your running pods and access JMX methods and data through the Java Console</p>
+
+<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/podInfo.png"> <img
+	class="center-block img-responsive"
+	src="/assets/images//posts/openshift-quickstart-in-5-minutes/podInfo.png" alt="openshift pod information"/></a>
+
+	<a href="/assets/images//posts/openshift-quickstart-in-5-minutes/javaconsole.png"> <img
+		class="center-block img-responsive"
+		src="/assets/images//posts/openshift-quickstart-in-5-minutes/javaconsole.png" alt="java console"/></a>
+
+<p>Thanks for reading</p>
+
+<p><strong>Other resources</strong></p>
+<ul>
+	<li><a href="http://www.schabell.org/2017/02/cloud-happiness-openshift-container-platform-install-updated.html">Cloud Happiness - OpenShift Container Platform v3.4 install demo updated</a></li>
+	<li>Have your own Openshift Container Platform for development : <a href="https://developers.redhat.com/products/cdk/overview/">Red Hat Container Development Kit</a></li>
+</ul>
+
+
+
+	
+	<p>Originally published April 11, 2017
+    <br> Latest update April 11, 2017</p>
+
+    <p><strong>Related posts :</strong></p>
+        <ul>
+	    
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  <li>
+			      <a href="/posts/faster-fuse-integration-service-s2i-openshift-deployments/">
+			        Faster Fuse Integration Service 2.0 S2I Openshift Deployments
+			      </a>
+			  </li>
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  <li>
+			      <a href="/posts/quickstart-rest-microservice-with-spring-boot/">
+			        Quickstart Json RESTful microservice with Spring-Boot
+			      </a>
+			  </li>
+			  
+		
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		
+		</ul>
+	
+
+	
+	
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+this.page.url = "https://alainpham.github.io/posts/openshift-quickstart-in-5-minutes/";  // Replace PAGE_URL with your page's canonical URL variable
+//this.page.identifier = "/posts/openshift-quickstart-in-5-minutes"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//apham.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
+	</div>
+	<footer class="footer">
+	<ul class="footer-links">
+		<li><a href="http://github.com/alainpham"> <i
+				class="fa fa-inverse fa-github fa-3x"></i></a></li>
+		<li><a href="http://www.linkedin.com/in/alainpham"> <i
+				class="fa fa-inverse fa-linkedin-square fa-3x"></i></a></li>
+		<li><a href="https://twitter.com/koint"> <i
+				class="fa fa-inverse fa-twitter fa-3x"></i></a></li>
+	</ul>
+</footer>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
